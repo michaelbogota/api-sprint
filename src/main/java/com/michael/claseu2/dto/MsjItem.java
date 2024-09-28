@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class MsjItem {
-    private String fruit = "Se agrego correctamente!!!";
+    private String fruit = "Se agrego correctamente!!!!";
 }
