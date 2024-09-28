@@ -47,13 +47,11 @@ public class ClaseUApplication {
         }
     }
 
-    @DeleteMapping("/fruits/{id}")
-    public MsjItem deleteItems(@PathVariable String id) {
-        try{
-            return new MsjItem(fruits.remove(Integer.parseInt(id)));
-        } catch (Exception e) {
-            return new MsjItem("No existe");
-        }
+
+    @PostMapping("/fruits")
+    public SetItem setItems(@RequestBody Fruit fruit) {
+        fruits.add(fruit.getName());
+        return new SetItem();
     }
 
     @GetMapping("/fruits")
@@ -61,10 +59,24 @@ public class ClaseUApplication {
         return fruits;
     }
 
-    @PostMapping("/fruits")
-    public SetItem setItems(@RequestBody Fruit fruit) {
-        fruits.add(fruit.getName());
-        return new SetItem();
+    @DeleteMapping("/fruits/{id}")
+    public MsjItem deleteItems(@PathVariable String id) {
+        try {
+            return new MsjItem(fruits.remove(Integer.parseInt(id)));
+        } catch (Exception e) {
+            return new MsjItem("No existe");
+        }
+    }
+
+    @PutMapping("/fruits/{id}")
+    public MsjItem putItems(@PathVariable String id, @RequestBody Fruit fruit) {
+        try {
+            fruits.remove(Integer.parseInt(id));
+            fruits.add(fruit.getName());
+            return new MsjItem(fruit.getName());
+        } catch (Exception e) {
+            return new MsjItem("No existe");
+        }
     }
 
 }
