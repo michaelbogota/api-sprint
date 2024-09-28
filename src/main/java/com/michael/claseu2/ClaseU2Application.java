@@ -1,4 +1,4 @@
-package com.example.claseu;
+package com.example.claseu2;
 
 import com.example.claseu.dto.Fruit;
 import com.example.claseu.dto.MsjItem;
@@ -14,7 +14,8 @@ import java.util.ArrayList;
 
 @SpringBootApplication
 @RestController
-public class ClaseUApplication {
+@RequestMapping("/api/v1")
+public class ClaseU2Application {
 
     //propiedad inicial de la clase
     private ArrayList<String> fruits = new ArrayList<String>();
@@ -24,7 +25,7 @@ public class ClaseUApplication {
     }
 
     //constructor donde lleno el array de frutas
-    public ClaseUApplication() {
+    public ClaseU2Application() {
         fruits.add("Manzana");
         fruits.add("Pera");
         fruits.add("Banano");

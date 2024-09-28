@@ -1,10 +1,10 @@
-package com.example.claseu;
+package com.michael.claseu2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ClaseUApplicationTests {
+class ClaseU2ApplicationTests {
 
     @Test
     void contextLoads() {
