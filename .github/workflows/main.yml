@@ -42,7 +42,7 @@ jobs:
       - name: Download WAR artifact
         uses: actions/download-artifact@v3
         with:
-          name: michaelalfonso-1.0.1.war
+          name: michaelalfonso-war
 
       - name: List target directory contents
         run: ls -l ./
