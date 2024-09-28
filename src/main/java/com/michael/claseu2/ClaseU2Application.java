@@ -1,8 +1,8 @@
-package com.example.claseu2;
+package com.michael.claseu2;
 
-import com.example.claseu.dto.Fruit;
-import com.example.claseu.dto.MsjItem;
-import com.example.claseu.dto.SetItem;
+import com.michael.claseu2.dto.Fruit;
+import com.michael.claseu2.dto.MsjItem;
+import com.michael.claseu2.dto.SetItem;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;

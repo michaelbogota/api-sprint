@@ -1,4 +1,4 @@
-package com.example.claseu.dto;
+package com.michael.claseu2.dto;
 
 import lombok.Data;
 
