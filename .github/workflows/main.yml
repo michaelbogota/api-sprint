@@ -77,7 +77,7 @@ jobs:
         run: sleep 3
 
       - name: Test GET all values
-        run: curl -f --location 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1' --insecure
+        run: curl -f --location 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1/hello' --insecure
 
       - name: Test GET specific value
         run: curl -f --location 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1/1' --insecure
