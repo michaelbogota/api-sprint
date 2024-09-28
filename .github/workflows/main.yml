@@ -56,17 +56,17 @@ jobs:
       - name: Add server to known hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H microservices.synergysec.io >> ~/.ssh/known_hosts
 
       - name: Upload WAR to server
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.SERVER_IP }}
+          host: microservices.synergysec.io
           username: sshtesting
           password: ${{ secrets.SSH_PASSWORD }}
           port: 22
           source: "michaelalfonso.war"
-          target: ${{ secrets.SERVER_IP }}
+          target: microservices.synergysec.io
 
   test:
     runs-on: ubuntu-latest
@@ -77,24 +77,24 @@ jobs:
         run: sleep 3
 
       - name: Test GET all values
-        run: curl -f --location 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1' --insecure
+        run: curl -f --location 'https://microservices.synergysec.io:8443/michaelalfonso/api/v1' --insecure
 
       - name: Test GET specific value
-        run: curl -f --location 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1/1' --insecure
+        run: curl -f --location 'https://microservices.synergysec.io:8443/michaelalfonso/api/v1/1' --insecure
 
       - name: Test POST values
         run: |
-          curl -f --location --request POST "https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1" \
+          curl -f --location --request POST "https://microservices.synergysec.io:8443/michaelalfonso/api/v1" \
           --data 'Chile' \
           --insecure \
           --header 'Content-Type: text/plain'
       
       - name: Test PUT values
         run: |
-          curl -f --location --request PUT 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1/6' \
+          curl -f --location --request PUT 'https://microservices.synergysec.io:8443/michaelalfonso/api/v1/6' \
           --header 'Content-Type: text/plain' \
           --data 'Marruecos' \
           --insecure
 
       - name: Test DELETE values
-        run: curl -f --location --request DELETE 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1/6' --insecure
+        run: curl -f --location --request DELETE 'https://microservices.synergysec.io:8443/michaelalfonso/api/v1/6' --insecure
