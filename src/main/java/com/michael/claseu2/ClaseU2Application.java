@@ -21,7 +21,7 @@ public class ClaseU2Application {
     private ArrayList<String> fruits = new ArrayList<String>();
 
     public static void main(String[] args) {
-        SpringApplication.run(ClaseUApplication.class, args);
+        SpringApplication.run(ClaseU2Application.class, args);
     }
 
     //constructor donde lleno el array de frutas
