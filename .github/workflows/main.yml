@@ -42,7 +42,7 @@ jobs:
       - name: Download WAR artifact
         uses: actions/download-artifact@v3
         with:
-          name: michaelalfonso-war
+          name: michaelalfonso-1.0.1.war
 
       - name: List target directory contents
         run: ls -l ./
@@ -56,17 +56,17 @@ jobs:
       - name: Add server to known hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H microservices.synergysec.io >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
       - name: Upload WAR to server
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: microservices.synergysec.io
+          host: ${{ secrets.SERVER_IP }}
           username: sshtesting
           password: ${{ secrets.SSH_PASSWORD }}
           port: 22
           source: "michaelalfonso.war"
-          target: microservices.synergysec.io
+          target: ${{ secrets.SERVER_IP }}
 
   test:
     runs-on: ubuntu-latest
@@ -77,24 +77,24 @@ jobs:
         run: sleep 3
 
       - name: Test GET all values
-        run: curl -f --location 'https://microservices.synergysec.io:8443/michaelalfonso/api/v1' --insecure
+        run: curl -f --location 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1' --insecure
 
       - name: Test GET specific value
-        run: curl -f --location 'https://microservices.synergysec.io:8443/michaelalfonso/api/v1/1' --insecure
+        run: curl -f --location 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1/1' --insecure
 
       - name: Test POST values
         run: |
-          curl -f --location --request POST "https://microservices.synergysec.io:8443/michaelalfonso/api/v1" \
+          curl -f --location --request POST "https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1" \
           --data 'Chile' \
           --insecure \
           --header 'Content-Type: text/plain'
-      
+
       - name: Test PUT values
         run: |
-          curl -f --location --request PUT 'https://microservices.synergysec.io:8443/michaelalfonso/api/v1/6' \
+          curl -f --location --request PUT 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1/6' \
           --header 'Content-Type: text/plain' \
           --data 'Marruecos' \
           --insecure
 
       - name: Test DELETE values
-        run: curl -f --location --request DELETE 'https://microservices.synergysec.io:8443/michaelalfonso/api/v1/6' --insecure
+        run: curl -f --location --request DELETE 'https://${{ secrets.SERVER_IP }}:8443/michaelalfonso/api/v1/6' --insecure
