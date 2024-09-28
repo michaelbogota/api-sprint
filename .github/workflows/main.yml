@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: michaelalfonso-war
-          path: target/michaelalfonso-1.0.1.war
+          path: target/ClaseU2-0.0.1-SNAPSHOT.war
       
       - name: List target directory contents
         run: ls -l target
@@ -48,7 +48,7 @@ jobs:
         run: ls -l ./
 
       - name: Rename WAR file
-        run: mv michaelalfonso-1.0.1.war michaelalfonso.war
+        run: mv ClaseU2-0.0.1-SNAPSHOT.war michaelalfonso.war
 
       - name: Install sshpass
         run: sudo apt-get update && sudo apt-get install -y sshpass
