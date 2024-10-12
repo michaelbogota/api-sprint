@@ -72,8 +72,7 @@ public class ClaseU2Application {
     @PutMapping("/fruits/{id}")
     public MsjItem putItems(@PathVariable String id, @RequestBody Fruit fruit) {
         try {
-            fruits.remove(Integer.parseInt(id));
-            fruits.add(fruit.getName());
+            fruits.set(Integer.parseInt(id), fruit.getName());
             return new MsjItem(fruit.getName());
         } catch (Exception e) {
             return new MsjItem("No existe");
